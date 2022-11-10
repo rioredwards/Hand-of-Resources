@@ -11,42 +11,59 @@ describe('animals routes', () => {
   it('#GET /animals should return a list of animals', async () => {
     const resp = await request(app).get('/animals');
     expect(resp.status).toBe(200);
-    expect(resp.body).toEqual([
-      {
-        id: '1',
-        common_name: 'Echidna',
-        num_legs: 4,
-      },
-      {
-        id: '2',
-        common_name: 'Capuchin',
-        num_legs: 2,
-      },
-      {
-        id: '3',
-        common_name: 'Python',
-        num_legs: 0,
-      },
-      {
-        id: '4',
-        common_name: 'Fox',
-        num_legs: 4,
-      },
-      {
-        id: '5',
-        common_name: 'Butterfly',
-        num_legs: 6,
-      },
-    ]);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "common_name": "Echidna",
+          "id": "1",
+          "num_legs": 4,
+        },
+        Object {
+          "common_name": "Capuchin",
+          "id": "2",
+          "num_legs": 2,
+        },
+        Object {
+          "common_name": "Python",
+          "id": "3",
+          "num_legs": 0,
+        },
+        Object {
+          "common_name": "Fox",
+          "id": "4",
+          "num_legs": 4,
+        },
+        Object {
+          "common_name": "Butterfly",
+          "id": "5",
+          "num_legs": 6,
+        },
+      ]
+    `);
   });
 
   it('#GET animals/:id should return a single animal', async () => {
     const resp = await request(app).get('/animals/1');
     expect(resp.status).toBe(200);
-    expect(resp.body).toEqual({
-      id: '1',
-      common_name: 'Echidna',
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "common_name": "Echidna",
+        "id": "1",
+        "num_legs": 4,
+      }
+    `);
+  });
+
+  it('#POST /animals should create a new animal', async () => {
+    const newAnimal = {
+      common_name: 'Cat',
       num_legs: 4,
+    };
+    const resp = await request(app).post('/animals').send(newAnimal);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newAnimal,
     });
   });
 
