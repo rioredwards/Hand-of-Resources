@@ -67,6 +67,14 @@ describe('animals routes', () => {
     });
   });
 
+  it('#PUT /animals/:id should update an existing animal', async () => {
+    const resp = await request(app).put('/animals/1').send({
+      num_legs: 3,
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.num_legs).toBe(3);
+  });
+
   afterAll(() => {
     pool.end();
   });

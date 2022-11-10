@@ -20,8 +20,8 @@ insert into colors (name, is_my_favorite) values ('Orange', false);
 
 create table animals (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	common_name VARCHAR(25) NOT NULL,
-	num_legs INT NOT NULL
+	common_name VARCHAR(25),
+	num_legs INT
 );
 insert into animals (common_name, num_legs) values ('Echidna', 4);
 insert into animals (common_name, num_legs) values ('Capuchin', 2);
