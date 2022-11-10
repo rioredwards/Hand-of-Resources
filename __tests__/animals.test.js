@@ -40,6 +40,16 @@ describe('animals routes', () => {
     ]);
   });
 
+  it('#GET animals/:id should return a single animal', async () => {
+    const resp = await request(app).get('/animals/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '1',
+      common_name: 'Echidna',
+      num_legs: 4,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
