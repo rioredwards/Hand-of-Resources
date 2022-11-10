@@ -9,8 +9,8 @@ DROP TABLE IF EXISTS apps;
 
 create table colors (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	name VARCHAR(25),
-	is_my_favorite BOOLEAN
+	name VARCHAR(25) NOT NULL,
+	is_my_favorite BOOLEAN NOT NULL
 );
 insert into colors (name, is_my_favorite) values ('Purple', false);
 insert into colors (name, is_my_favorite) values ('Red', false);
@@ -20,8 +20,8 @@ insert into colors (name, is_my_favorite) values ('Orange', false);
 
 create table animals (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	common_name VARCHAR(25),
-	num_legs INT
+	common_name VARCHAR(25) NOT NULL,
+	num_legs INT NOT NULL
 );
 insert into animals (common_name, num_legs) values ('Echidna', 4);
 insert into animals (common_name, num_legs) values ('Capuchin', 2);
@@ -31,8 +31,8 @@ insert into animals (common_name, num_legs) values ('Butterfly', 6);
 
 create table users (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	username VARCHAR(25),
-	email VARCHAR(50)
+	username VARCHAR(25) NOT NULL,
+	email VARCHAR(50) NOT NULL
 );
 insert into users (username, email) values ('tguinan0', 'jlefriec0@feedburner.com');
 insert into users (username, email) values ('ctixall1', 'sducker1@nationalgeographic.com');
@@ -42,8 +42,8 @@ insert into users (username, email) values ('dedy4', 'ebalcon4@elpais.com');
 
 create table cities (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	name VARCHAR(50),
-	address VARCHAR(50)
+	name VARCHAR(50) NOT NULL,
+	address VARCHAR(50) NOT NULL
 );
 insert into cities (name, address) values ('Sungai', '359 Loomis Junction');
 insert into cities (name, address) values ('Ambelókipoi', '0 Merry Street');
@@ -53,8 +53,8 @@ insert into cities (name, address) values ('Bojongsarung', '2 Rowland Point');
 
 create table apps (
 	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	name VARCHAR(50),
-	version VARCHAR(50)
+	name VARCHAR(50) NOT NULL,
+	version VARCHAR(50) NOT NULL
 );
 insert into apps (name, version) values ('Span', '3.29');
 insert into apps (name, version) values ('Voltsillam', '6.2.9');
