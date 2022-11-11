@@ -42,6 +42,18 @@ describe('colors routes', () => {
     `);
   });
 
+  it('#GET colors/:id should return a single color', async () => {
+    const resp = await request(app).get('/colors/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "1",
+        "is_my_favorite": false,
+        "name": "Purple",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
