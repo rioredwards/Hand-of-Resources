@@ -67,6 +67,14 @@ describe('apps routes', () => {
     });
   });
 
+  it('#PUT /apps/:id should update an existing app', async () => {
+    const resp = await request(app).put('/apps/1').send({
+      name: 'Reddit',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.name).toBe('Reddit');
+  });
+
   afterAll(() => {
     pool.end();
   });
