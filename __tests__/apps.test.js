@@ -54,6 +54,19 @@ describe('apps routes', () => {
     `);
   });
 
+  it('#POST /apps should create a new app', async () => {
+    const newApp = {
+      name: 'Facebook',
+      version: '4.7',
+    };
+    const resp = await request(app).post('/apps').send(newApp);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newApp,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
