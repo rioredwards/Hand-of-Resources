@@ -75,6 +75,14 @@ describe('colors routes', () => {
     expect(resp.body.name).toBe('Yellow');
   });
 
+  it('#DELETE /colors/:id should delete a color', async () => {
+    const resp = await request(app).delete('/colors/1');
+    expect(resp.status).toBe(200);
+
+    const colorResp = await request(app).get('/colors/1');
+    expect(colorResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
