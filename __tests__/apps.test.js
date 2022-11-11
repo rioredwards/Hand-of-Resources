@@ -75,6 +75,14 @@ describe('apps routes', () => {
     expect(resp.body.name).toBe('Reddit');
   });
 
+  it('#DELETE /apps/:id should delete a app', async () => {
+    const resp = await request(app).delete('/apps/1');
+    expect(resp.status).toBe(200);
+
+    const appResp = await request(app).get('/apps/1');
+    expect(appResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
