@@ -75,6 +75,14 @@ describe('users routes', () => {
     expect(resp.body.username).toBe('NewUser42');
   });
 
+  it('#DELETE /users/:id should delete a user', async () => {
+    const resp = await request(app).delete('/users/1');
+    expect(resp.status).toBe(200);
+
+    const userResp = await request(app).get('/users/1');
+    expect(userResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
