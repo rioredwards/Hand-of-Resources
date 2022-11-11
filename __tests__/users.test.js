@@ -54,6 +54,18 @@ describe('users routes', () => {
     `);
   });
 
+  it('#POST /users should create a new user', async () => {
+    const newUser = {
+      username: 'rioredwards',
+      email: 'email@email.com',
+    };
+    const resp = await request(app).post('/users').send(newUser);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newUser,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
