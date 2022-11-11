@@ -66,6 +66,15 @@ describe('users routes', () => {
       ...newUser,
     });
   });
+
+  it('#PUT /users/:id should update an existing user', async () => {
+    const resp = await request(app).put('/users/1').send({
+      username: 'NewUser42',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.username).toBe('NewUser42');
+  });
+
   afterAll(() => {
     pool.end();
   });
