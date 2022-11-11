@@ -56,7 +56,7 @@ describe('colors routes', () => {
 
   it('#POST /colors should create a new color', async () => {
     const newColor = {
-      name: 'violet',
+      name: 'Violet',
       is_my_favorite: false,
     };
     const resp = await request(app).post('/colors').send(newColor);
@@ -65,6 +65,14 @@ describe('colors routes', () => {
       id: expect.any(String),
       ...newColor,
     });
+  });
+
+  it('#PUT /colors/:id should update an existing color', async () => {
+    const resp = await request(app).put('/colors/1').send({
+      name: 'Yellow',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.name).toBe('Yellow');
   });
 
   afterAll(() => {
