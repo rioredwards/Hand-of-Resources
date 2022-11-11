@@ -42,6 +42,18 @@ describe('users routes', () => {
     `);
   });
 
+  it('#GET users/:id should return a single user', async () => {
+    const resp = await request(app).get('/users/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "email": "jlefriec0@feedburner.com",
+        "id": "1",
+        "username": "tguinan0",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
