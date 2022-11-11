@@ -42,6 +42,18 @@ describe('apps routes', () => {
     `);
   });
 
+  it('#GET apps/:id should return a single app', async () => {
+    const resp = await request(app).get('/apps/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "1",
+        "name": "Span",
+        "version": "3.29",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
