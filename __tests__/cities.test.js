@@ -75,6 +75,14 @@ describe('cities routes', () => {
     expect(resp.body.address).toBe('Vancouver');
   });
 
+  it('#DELETE /cities/:id should delete a city', async () => {
+    const resp = await request(app).delete('/cities/1');
+    expect(resp.status).toBe(200);
+
+    const cityResp = await request(app).get('/cities/1');
+    expect(cityResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
