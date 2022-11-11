@@ -75,6 +75,14 @@ describe('animals routes', () => {
     expect(resp.body.num_legs).toBe(3);
   });
 
+  it('#DELETE /animals/:id should delete a animal', async () => {
+    const resp = await request(app).delete('/animals/1');
+    expect(resp.status).toBe(200);
+
+    const animalResp = await request(app).get('/animals/1');
+    expect(animalResp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
