@@ -42,6 +42,18 @@ describe('cities routes', () => {
     `);
   });
 
+  it('#GET cities/:id should return a single city', async () => {
+    const resp = await request(app).get('/cities/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "address": "359 Loomis Junction",
+        "id": "1",
+        "name": "Sungai",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
