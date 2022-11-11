@@ -67,6 +67,14 @@ describe('cities routes', () => {
     });
   });
 
+  it('#PUT /cities/:id should update an existing city', async () => {
+    const resp = await request(app).put('/cities/1').send({
+      address: 'Vancouver',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.address).toBe('Vancouver');
+  });
+
   afterAll(() => {
     pool.end();
   });
